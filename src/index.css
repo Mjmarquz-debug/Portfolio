@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Oculta scrollbar pero mantiene el scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}

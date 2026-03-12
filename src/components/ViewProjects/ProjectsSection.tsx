@@ -6,6 +6,9 @@ import type { IconType } from 'react-icons/lib'
 import { SiTypescript, SiTailwindcss, SiN8N, SiGooglegemini, SiJavascript, SiHtml5, SiCss3, SiPython, SiShopify } from 'react-icons/si'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import photoPortfolio from '../../assets/photo/foto_portafolio.png'
+import photon8n from '../../assets/photo/n8n-asistente.png'
+import photosweetlema from '../../assets/photo/sweetslema.png'
 
 function ProjectsSection({
   selectedProject,
@@ -20,7 +23,7 @@ function ProjectsSection({
 
   const titleClass = 'bg-[#FFCC0B] rounded-full border-2 border-black py-1 px-3 whitespace-nowrap w-fit items-center justify-center flex'
   const buttonClassExpanded = 'text-black bg-[#FF8600] rounded-full border-2 border-black px-3 py-1 text-[15px] cursor-pointer hover:scale-110'
-  const buttonClassCollapsed = 'text-black bg-[#FF8600] rounded-full border-2 border-black px-2 py-0.5 text-[15px] cursor-pointer hover:scale-110'
+  const buttonClassCollapsed = 'text-black bg-[#FFCC0B] rounded-full border-2 border-black px-2 py-0.5 text-[15px] cursor-pointer hover:scale-110'
 
   const technIcons: Record<string, IconType> = {
     react: FaReact,
@@ -48,7 +51,7 @@ function ProjectsSection({
     {
       name: t('portfolio.name'),
       description: t('portfolio.description'),
-      image: '/foto_portafolio.png',
+      image: photoPortfolio,
       technologies: ['react', 'typescript', 'tailwindcss', 'figma'],
       code: 'https://github.com/martinhernandezz/Portfolio',
       demo: 'https://martinhernandezz.github.io/Portfolio/',
@@ -56,7 +59,7 @@ function ProjectsSection({
     {
       name: t('automation.name'),
       description: t('automation.description'),
-      image: '/1.png',
+      image: photon8n,
       technologies: ['n8n', 'gemini'],
       code: 'https://github.com/Mjmarquz-debug/n8n-FlowChart-Chats',
       demo: 'https://martinhernandezz.github.io/Lego-Landing-Page/',
@@ -64,12 +67,11 @@ function ProjectsSection({
     {
       name: t('sweetlema.name'),
       description: t('sweetlema.description'),
-      image: '/1.png',
+      image: photosweetlema,
       technologies: ['javascript', 'html', 'css', 'python', 'shopify'],
       page: 'https://sweetslema.com/',
     },
   ]
-
   const projectsToShow = selectedProject
     ? projects.length
     : windowWidth > 1500
@@ -91,21 +93,32 @@ function ProjectsSection({
       <div className='w-full flex flex-col overflow-hidden h-full'>
         <div className={`grid w-full overflow-y-auto gap-x-5 gap-y-5 no-scrollbar ${selectedProject ? 'grid-cols-2' : 'grid-cols-1'}`}>
           {projects.slice(0, projectsToShow).map((project) => (
-            <div key={project.name} className='flex flex-col gap-5 w-full items-center text-[15px]'>
-              <img
-                src={project.image}
-                alt={project.name}
-                className='w-55 h-25 object-cover rounded hidden xl:block shrink-0'
-              />
+          
+          <div className={`hidden xl:block w-full p-2 rounded-lg border-2 border-black
+          ${isDarkMode ? 'bg-[#1F2C34]' : 'bg-white'}`}
+          >
+          <div className="flex gap-1 mb-2">
+            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+
+          <img
+            src={project.image}
+            alt={project.name}
+            loading="lazy"
+            className="w-full aspect-video object-cover rounded "
+          />
+
               <div className='flex flex-col w-full items-center text-center gap-5'>
-                <p className='text-[15px]'>{project.name}</p>
-                <p>{project.description}</p>
+                <p className='text-[15px] pt-2'>{project.name}</p>
+                <p className='px-2'>{project.description}</p>
 
                 <div className='flex gap-3 items-center justify-center'>
                   {project.technologies.map((tech) => {
                     const Icon = technIcons[tech]
                     return Icon ? (
-                      <div key={tech} className='relative group flex flex-col items-center'>
+                      <div key={tech} className='relative group flex flex-col items-center pb-3'>
                         <Icon size={20} className={`transition-transform duration-100 ${isDarkMode ? 'text-[#D973DE]' : 'text-black'} group-hover:scale-125`} />
                         <span className='absolute -top-10 opacity-0 group-hover:opacity-100 transition-all duration-200 text-[11px] bg-[#1F2C34] ring-2 ring-black text-white px-2 py-1 rounded-full whitespace-nowrap pointer-events-none z-50'>
                           {tech.charAt(0).toUpperCase() + tech.slice(1)}

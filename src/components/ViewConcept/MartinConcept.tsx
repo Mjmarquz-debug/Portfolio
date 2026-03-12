@@ -22,7 +22,7 @@ function MartinConcept({ isDarkMode }: { isDarkMode: boolean }) {
 
       <div className='rounded-xl relative border-2 border-black overflow-hidden h-full'>
         <div className='relative h-full w-full'>
-          <img src={PhotoProfile} alt='Foto de Martin' className='object-cover h-full w-full' />
+          <img loading="lazy" src={PhotoProfile} alt='Foto de Martin' className='object-cover h-full w-full' />
 
           <div style={{ fontFamily: '"Red Hat Display", sans-serif', fontWeight: 900 }}
             className={`absolute top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-1 rounded-full whitespace-nowrap border-2 border-black text-[20px] ${bgColorBox}`}>
